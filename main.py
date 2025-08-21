@@ -397,7 +397,7 @@ def get_user_input():
 
 def main():
     # Uncomment to get the workflow diagram
-    generate_mermaid_diagram(graph)
+    # generate_mermaid_diagram(graph)
     print_banner(
         title="WhitePrint AI", 
         subtitle="Intelligent Architectural Design Assistant", 
