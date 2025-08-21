@@ -368,6 +368,33 @@ workflow.add_edge("plan_renderer", "plan_output")
 
 graph = workflow.compile()
 
+def get_user_input():
+    """Get floor plan request from user with examples and validation."""
+    print_info("🏠 Describe your ideal floor plan using natural language")
+    print()
+    
+    # Show examples
+    print("💡 Example requests:")
+    print("   • House 500m² with 3 bedrooms, 2 bathrooms, living room and kitchen")
+    print("   • 600m² home with 2 bedrooms with ensuite bathrooms and guest bathroom")
+    print("   • Large family house 800m² with 4 bedrooms, 3 bathrooms, and storage")
+    print("   • Apartment 400m² with 2 bedrooms, living room, kitchen, and balcony")
+    print()
+    
+    while True:
+        user_input = input("🏗️  Enter your floor plan request: ").strip()
+        
+        if not user_input:
+            print_warning("Please provide a floor plan description")
+            continue
+            
+        if len(user_input) < 10:
+            print_warning("Please provide more detail about your floor plan requirements")
+            continue
+            
+        return user_input
+
+
 def main():
     print_banner(
         title="WhitePrint AI", 
@@ -376,15 +403,26 @@ def main():
         subheader1="🏗️  Automated Room Allocation & Layout Planning",
         subheader2="🎨  Beautiful Visual Floor Plan Generation"
     )
+    
+    try:
+        # Get user input
+        user_request = get_user_input()
+        print()
+        print_info(f"🚀 Starting floor plan generation for: '{user_request}'")
+        print()
+        
+        # Process the request
+        result = graph.invoke({"input": user_request})
+        print_completion_message("AI Floor Plan Generator", "Beautiful Architecture Made Simple")
+        
+    except KeyboardInterrupt:
+        print()
+        print_warning("Generation cancelled by user")
+    except Exception as e:
+        print_error(f"Floor plan generation failed: {e}")
+        print_info("Please check your input and try again")
 
 
 if __name__ == "__main__":
     main()
-    
-    try:
-        result = graph.invoke({"input": "House 700m2 (28x25) with 2 bedrooms with bathrooms and 1 guest bathroom for living room. 1 storage room by the hallway"})
-        print_completion_message("AI Floor Plan Generator", "Beautiful Architecture Made Simple")
-    except Exception as e:
-        print_error(f"Floor plan generation failed: {e}")
-        print_info("Please check your input and try again")
 

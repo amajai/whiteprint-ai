@@ -219,14 +219,24 @@ WhitePrint AI generates professional floor plans with:
 - Grid overlay for precise measurements
 - Title with house specifications
 
-Sample output for "House 800m² with 2 bedrooms with bathrooms":
-- Living Room: 160m² (20%)
-- Kitchen: 120m² (15%)
-- Bedroom 1: 100m² (12.5%) + Bathroom 1: 40m² (5%)
-- Bedroom 2: 100m² (12.5%) + Bathroom 2: 40m² (5%)
-- Guest Bathroom: 40m² (5%)
-- Hallway System: 120m² (15%)
-- Storage: 80m² (10%)
+### Sample Floor Plan
+
+<div align="center">
+
+![Sample Floor Plan](samples/floor_plan_5.png)
+
+*Sample 700m² layout with 2 bedrooms, ensuite bathrooms, guest bathroom, and storage*
+
+</div>
+
+**Generated Layout Breakdown:**
+- Living Room: 182m² (26%)
+- Kitchen: 84m² (12%)
+- Bedroom 1: 105m² (15%) + Bathroom 1: 42m² (6%)
+- Bedroom 2: 105m² (15%) + Bathroom 2: 42m² (6%)
+- Guest Bathroom: 35m² (5%)
+- Main Hallway: 84m² (12%)
+- Storage: 21m² (3%)
 
 ## Project Status: Proof of Concept
 
