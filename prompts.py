@@ -90,10 +90,8 @@ TASK:
     * Kitchen (≥ 10% of area)
     * Living room (20-30%)
     * 1 bathroom per 1 bedrooms (each 5-10%)
-    * Multiple hallways for optimal connectivity (8-18% total for wider circulation)
-- Create multiple hallways (Hallway 1, Hallway 2, etc.) if needed for better access
-- Hallways should be WIDER for comfortable circulation (allocate more area)
-- Hallways can be horizontal, vertical, or both to create flexible room connections
+    * Hallway (multiple if needed) for pathway (5-10% if needed, exempt from min-size rules)
+- Hallway are long
 - Assign each room a proportion of the total floor area (values between 0 and 1). 
 - Ensure proportions sum to 1.0 exactly.
 - Only include Storage if the user explicitly requested it. Do NOT add by default.
@@ -113,51 +111,41 @@ TOTAL AREA: {total_area} m²
 ROOMS TO PLACE:
 {rooms}
 
-CORE LAYOUT PRINCIPLES:
-1. Living Room and Kitchen at bottom level (y=0), side by side
-2. Multiple flexible hallways for optimal connectivity
-3. Bedrooms with adjacent ensuite bathrooms (preserve bedroom-bathroom pairs)
-4. Guest bathroom accessible via hallway system
-5. Storage (if present) positioned to not disrupt ensuite pairs
+LAYOUT STRATEGY:
+1. BOTTOM ROW (y=0): Living Room and Kitchen side by side
+2. MIDDLE ROW: Long horizontal Hallway spanning the width above Living Room/Kitchen
+3. TOP ROW: Bedrooms with their ensuite bathrooms + Guest bathroom
 
-ENSUITE BATHROOM REQUIREMENTS (CRITICAL):
-- Bedroom 1 + Bathroom 1: Must be directly adjacent (shared wall)
-- Bedroom 2 + Bathroom 2: Must be directly adjacent (shared wall)
-- These pairs are SACRED - never separate them with other rooms
+SPECIFIC POSITIONING RULES:
+- Living Room: Bottom-left area (y=0)
+- Kitchen: Bottom-right area (y=0) 
+- Hallway: Horizontal strip above Living Room/Kitchen, spanning most of the width
+- Bedroom 1 + Bathroom 1: Top-left area (ensuite pair)
+- Bedroom 2 + Bathroom 2: Top-right area (ensuite pair)  
+- Bathroom 3: Connected to hallway (guest bathroom)
 
-FLEXIBLE HALLWAY SYSTEM:
-- Use multiple hallways (Hallway 1, Hallway 2, etc.) as needed
-- Hallways can be horizontal (x-axis), vertical (y-axis), or both
-- Create L-shaped, T-shaped, or linear hallway networks
-- Main hallway connects Living Room to bedroom area
-- Secondary hallways provide additional access and flexibility
-- Make hallways WIDER for better circulation (minimum 2-3 meters width)
-- Hallways should be spacious corridors, not narrow passages
+ENSUITE BATHROOM RULES:
+- Bathroom 1 must be directly adjacent to Bedroom 1 (shared wall)
+- Bathroom 2 must be directly adjacent to Bedroom 2 (shared wall)
+- Bathroom 3 is the guest bathroom - position it accessible from hallway
 
-SMART POSITIONING RULES:
-- Living Room: Bottom area, connects to main hallway
-- Kitchen: Bottom area, adjacent to Living Room
-- Bedroom-Bathroom pairs: Keep together, position efficiently
-- Guest bathroom (Bathroom 3): Accessible via hallway system
-- Storage: Connect to hallway, do NOT break ensuite bedroom-bathroom adjacency
+HALLWAY REQUIREMENTS:
+- Make hallway LONG and horizontal (runs along x-axis)
+- Position hallway above the Living Room/Kitchen row
+- Hallway should span most of the house width
+- Hallway connects to: Bedroom 1, Bedroom 2, and Bathroom 3 (guest)
 
-CONNECTIVITY STRATEGY:
-- All rooms accessible via hallway network
-- Preserve bedroom-bathroom ensuite connections
-- Efficient traffic flow between public and private areas
-- Storage accessible but not disruptive to main room relationships
-
-LAYOUT FLEXIBILITY:
-- Adapt hallway configuration to room count and storage needs
-- Optimize for both access and space efficiency
-- Maintain logical room groupings (bedrooms together, etc.)
-- Use hallway system to solve layout challenges
+CONNECTIVITY:
+- Living Room and Kitchen share a wall
+- Hallway connects to Living Room (vertical connection)
+- Bedrooms connect to hallway
+- Guest bathroom (Bathroom 3) connects to hallway
+- Ensuite bathrooms (1&2) connect directly to their bedrooms, NOT hallway
 
 GENERAL RULES:
-- No overlapping rectangles
-- All rooms within house boundaries
-- Output x, y (bottom-left), width, height for each room
-- Prioritize functionality over rigid grid patterns
+- Rectangles must not overlap
+- All rooms fit within house boundaries
+- Each room gets x, y (bottom-left), width, height coordinates
 """)
 
 
@@ -172,47 +160,29 @@ You are also given a list of rooms, with names, x, y, width, and height:{plan}
 ENSUITE BATHROOM CONNECTIVITY (HIGHEST PRIORITY):
 - Bathroom 1 connects ONLY to Bedroom 1 (ensuite)
 - Bathroom 2 connects ONLY to Bedroom 2 (ensuite)  
-- Bathroom 3 connects ONLY to hallway system (guest bathroom)
+- Bathroom 3 connects ONLY to Hallway (guest bathroom)
 
-MULTIPLE HALLWAY CONNECTIVITY:
-- Connect hallways to each other if multiple exist (Hallway 1 ↔ Hallway 2, etc.)
-- Living Room connects to at least one hallway (main access)
-- Bedrooms connect to hallway system (Hallway 1, Hallway 2, etc.)
-- Guest bathroom (Bathroom 3) connects to any hallway
-- Storage (if present) connects to hallway system
-
-REQUIRED CONNECTION TYPES:
+REQUIRED CONNECTIONS:
 1. Living Room ↔ Outside (mandatory)
-2. Living Room ↔ Kitchen (if adjacent)
-3. Living Room ↔ Hallway system (main access)
-4. Hallway interconnections (if multiple hallways exist)
-5. Bedrooms ↔ Hallway system (access to private area)
-6. Guest bathroom ↔ Hallway system
-7. Storage ↔ Hallway system (if storage exists)
-8. Bedroom 1 ↔ Bathroom 1 (ensuite connection)
-9. Bedroom 2 ↔ Bathroom 2 (ensuite connection)
+2. Living Room ↔ Kitchen (adjacent rooms)
+3. Living Room ↔ Hallway (vertical connection)
+4. Hallway ↔ Bedroom 1 (hallway access to bedroom)
+5. Hallway ↔ Bedroom 2 (hallway access to bedroom)
+6. Hallway ↔ Bathroom 3 (guest bathroom access)
+7. Bedroom 1 ↔ Bathroom 1 (ensuite connection)
+8. Bedroom 2 ↔ Bathroom 2 (ensuite connection)
 
-HALLWAY NETWORK RULES:
-- If multiple hallways exist, connect them for continuous flow
-- Each hallway should connect to relevant rooms in its area
-- Create efficient circulation paths
-- Avoid dead-end hallways unless necessary
-
-STRICT ENSUITE RULES:
-- Bathroom 1 and Bathroom 2 are ENSUITE ONLY - connect ONLY to their bedrooms
-- Guest bathroom connects ONLY to hallway system, NOT to bedrooms
-- Do NOT connect ensuite bathrooms to hallways
-- Preserve bedroom-bathroom ensuite privacy
-
-ACCESSIBILITY REQUIREMENTS:
-- Every room accessible from Living Room via hallway system
-- Storage accessible via hallway (not through bedrooms)
-- Guest bathroom publicly accessible via hallway
-- Efficient traffic flow between public and private areas
+STRICT RULES:
+- Bathroom 1 and Bathroom 2 are ENSUITE ONLY - they connect ONLY to their respective bedrooms
+- Bathroom 3 is the GUEST bathroom - it connects ONLY to the hallway
+- Do NOT connect ensuite bathrooms (1&2) to hallway
+- Do NOT connect guest bathroom (3) to bedrooms
+- Every room must be accessible from Living Room through the hallway system
+- Only place doors on shared/adjacent walls
+- Each connection should have exactly one door
 
 DOOR SPECIFICATIONS:
 - vertical doors → width≈0.3m, height≈0.9m  
 - horizontal doors → width≈0.9m, height≈0.3m
-- Place doors only on shared/adjacent walls
-- One door per connection
+- Place doors on shared walls between connected rooms
 """)
