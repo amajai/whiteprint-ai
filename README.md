@@ -78,6 +78,20 @@ WhitePrint AI demonstrates a **sophisticated multi-agent workflow** using LangGr
    python main.py
    ```
 
+5. **Enter your floor plan request**
+   The application will prompt you for input with helpful examples:
+   ```
+   🏠 Describe your ideal floor plan using natural language
+
+   💡 Example requests:
+      • House 500m² with 3 bedrooms, 2 bathrooms, living room and kitchen
+      • 600m² home with 2 bedrooms with ensuite bathrooms and guest bathroom
+      • Large family house 800m² with 4 bedrooms, 3 bathrooms, and storage
+      • Apartment 400m² with 2 bedrooms, living room, kitchen, and balcony
+
+   🏗️  Enter your floor plan request: 
+   ```
+
 ### Environment Variables
 
 Create a `.env` file with:
@@ -93,7 +107,19 @@ OPENAI_API_KEY=your_api_key_here   # if using OpenAI
 
 ## Usage Examples
 
-### Basic Usage
+### Interactive Usage (Recommended)
+
+Simply run the application and follow the interactive prompts:
+
+```bash
+python main.py
+```
+
+The application will guide you through the process with examples and validation.
+
+### Programmatic Usage
+
+For integration into other applications:
 
 ```python
 from main import graph
@@ -102,12 +128,8 @@ from main import graph
 result = graph.invoke({
     "input": "House 500m² with 3 bedrooms, 2 bathrooms, living room and kitchen"
 })
-```
 
-### Advanced Requests
-
-```python
-# House with specific requirements
+# Advanced request with specific requirements
 result = graph.invoke({
     "input": "House 800m² with 2 bedrooms with ensuite bathrooms, 1 guest bathroom, living room, kitchen, and storage room by the hallway"
 })
@@ -115,9 +137,19 @@ result = graph.invoke({
 
 ### Example Inputs
 
+The system accepts natural language descriptions like:
 - `"House 600m² with 4 bedrooms and 3 bathrooms"`
 - `"300m² apartment with 2 bedrooms, living room, kitchen, and balcony"`
 - `"Large family home 1000m² with 5 bedrooms, 4 bathrooms, and storage"`
+- `"Cozy 400m² house with 2 bedrooms, each with ensuite bathroom"`
+
+### User Experience Features
+
+- **Interactive Prompts**: Guided input with helpful examples
+- **Input Validation**: Ensures meaningful floor plan requests
+- **Real-time Progress**: Rich progress bars showing generation steps
+- **Error Handling**: Graceful handling of invalid inputs or system errors
+- **Professional Output**: Clean terminal interface with organized results
 
 ## Workflow Architecture
 
