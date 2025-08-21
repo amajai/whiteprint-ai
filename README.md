@@ -57,7 +57,7 @@ WhitePrint AI demonstrates a **sophisticated multi-agent workflow** using LangGr
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd whiteprint_ai
+   cd whiteprint-ai
    ```
 
 2. **Install dependencies**
@@ -156,7 +156,7 @@ Input → Validation → Room Allocation → Layout Planning → Door Planning �
 ## Project Structure
 
 ```
-whiteprint_ai/
+whiteprint-ai/
 ├── main.py              # Main application and workflow definition
 ├── models.py            # Pydantic data models and TypedDict definitions
 ├── prompts.py           # AI prompt templates using LangChain PromptTemplate
@@ -194,12 +194,6 @@ whiteprint_ai/
 - **Python 3.8+**: Core runtime
 
 ## Development
-
-### Running Tests
-
-```bash
-python -m pytest tests/
-```
 
 ### Code Structure
 
